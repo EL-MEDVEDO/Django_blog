@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+</head>
+<body>
+
+<h1 style="text-align:center">Средний рейтинг: {{rating}}</h1>
+<h1 style="margin:20px">Отзывы:</h1>
+<div style="display:flex; justify-content: space-around ">
+{% for rev in fb %}
+    <div style="margin: 20px">
+        <p>{{rev.author}}</p>
+        <p>{{rev.text}}</p>
+        <p>{{rev.date}}</p>
+        <p style="margon-bottom:40px">rating: {{rev.rating}}</p>
+    </div>
+{% endfor %}
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <a style="cursor:pointer; margin:10px;font-size: 15px; color: black; border: 1px solid; border-radius: 20px; padding: 10px" href="{% url 'post_list' %}">
+            <button style=" margin:10px; background-color: transparent; border: none; text-decoration:none">
+                Back
+            </button>
+        </a>
+        <h1>Рекомендации:</h1>
+        {% for i in items %}
+            <div style="margin:25px;display: inline-block">
+                <div>
+                    <a href="{% url 'post_detail' post_pk=i.pk %}">{{i.title}}</a>
+                    <p>{{i.feedbacks__rating__avg}}</p>
+                </div>
+                
+            </div>
+
+        {% endfor %}
+
+</body>
+</html>

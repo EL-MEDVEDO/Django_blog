@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>post detail</title>
+</head>
+<body>
+<style>
+    a {
+        text-decoration: none;
+    }
+    a:hover{
+        color:green;
+    }
+</style>
+
+    
+
+
+    <!-- {{  items }} -->
+    <div style="">
+
+        <a style="cursor:pointer; fon-size:35px; margin-left:10px;" href="{%url 'post_list'%}">
+            <button>
+                back-to-posts
+            </button>
+        </a>
+        
+        <a style="cursor:pointer; margin-left:30px;font-size: 15px; color: black; border: 1px solid; border-radius: 20px; padding: 10px" href="{% url 'post_edit' post_pk=post.pk %}">
+            <button style=" background-color: transparent; border: none; text-decoration:none">
+                Remake your post
+            </button>
+        </a>
+        
+        <a style="cursor:pointer; fon-size:35px; margin-left:10px;" href="{%url 'post_delete' post_pk=post.pk %}">
+            <button>
+                Delete
+            </button>
+        </a>
+        
+        {% if post.published == False %}
+            <a style="cursor:pointer; fon-size:35px; margin-left:10px;" href="{% url 'published_post' post_pk=post.pk %}">
+            <button>
+                publish
+            </button>
+            </a>
+        {% endif %}
+        
+        
+        <a style="color: black; text-decoration:none; margin-left:15% ;font-size:35px" href="{%url 'post_list'%}">
+            Django
+        </a>
+    </div>
+            
+        <div  style="margin-bottom:50px">
+            <div>
+                <div style="margin:20px;text-align:center">
+                    <p>{{post.title}}</p>
+                    <p>{{post.category}}</p>
+
+                </div>
+                <div>
+                    {{post.text}}
+                </div>
+                <div>
+                    {{post.publish_date}}
+                </div>
+            </div>
+        </div>
+    <div style="">
+    
+
+    <h1>Post's rating: {{rating}}</h1>
+
+    <a style="cursor:pointer; margin-bootom:40px;font-size: 15px; color: black; border: 1px solid; border-radius: 20px; padding: 10px" href="{% url 'feedback' post_pk=post.pk %}">
+            <button style=" background-color: transparent; border: none; text-decoration:none">
+                Отзывы
+            </button>
+    </a>
+
+    
+
+    <h1 style="font-size:20px">оставить комментарий:</h1>
+    <form action="" method="POST">{% csrf_token %}
+        {{comment_form.as_p}}
+        <input type="submit" value="оставить">
+    </form>
+
+
+    <h1 style="font-size:20px">Колличество комментариев: {{counter}}</h1>
+
+
+
+    <h1 style="font-size:20px">комментарии:</h1>
+    {% for comment in comments %}
+    <div>
+        <div><p>{{comment.author}}</p></div>
+        <div><p>{{comment.text}}</p></div>
+        <div><p>{{comment.publish_date}}</p></div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+</body>
+</html>
